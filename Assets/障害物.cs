@@ -18,6 +18,7 @@ public class 障害物 : MonoBehaviour
                     map[j, i] = 0;
             }
         }
+        makeSG(((int)robot.transform.position.x+250,(int)robot.transform.position.z+250),(400,300));
         makeWall((50,50),(100,300));
         makeWall((50,50),(300,100));
         makeStage();
@@ -66,9 +67,9 @@ public class 障害物 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            makeSG(((int)robot.transform.position.x+250,(int)robot.transform.position.z+250),(400,300));
-        }
+        // if(Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     makeSG(((int)robot.transform.position.x+250,(int)robot.transform.position.z+250),(400,300));
+        // }
     }
 }

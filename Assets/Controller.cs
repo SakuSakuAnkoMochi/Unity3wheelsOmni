@@ -40,12 +40,13 @@ public class Controller : MonoBehaviour
     {
         float Vx = 0, Vy = 0;
         float ω = 0;
-        φ = Vector3.SignedAngle(Vector3.right, (new Vector3(dir.transform.position.x, this.transform.position.y, dir.transform.position.z) - this.transform.position).normalized, new Vector3(0, -1, 0));
-        Debug.DrawLine(Vector3.right*100+this.transform.position,this.transform.position);
-        Debug.DrawLine((new Vector3(dir.transform.position.x,this.transform.position.y,dir.transform.position.z)-this.transform.position)*100,this.transform.position);
-        //Debug.Log(φ);
-        var a = MathF.Atan2(nowPoint.z - this.transform.position.z, nowPoint.x - this.transform.position.x) - φ / 180f * MathF.PI;
-        //Debug.Log(MathF.Atan2(nowPoint.z-this.transform.position.z,nowPoint.x-this.transform.position.x)*180/MathF.PI);
+        // φ = Vector3.SignedAngle(new Vector3(0,0,100).normalized, (new Vector3(dir.transform.position.x, this.transform.position.y, dir.transform.position.z) - this.transform.position).normalized, new Vector3(0, -1, 0));
+        // Debug.DrawLine(new Vector3(0,0,100)+this.transform.position,this.transform.position);
+        // Debug.DrawLine(new Vector3(dir.transform.position.x,this.transform.position.y,dir.transform.position.z),this.transform.position);
+        // //Debug.Log(φ);
+        // var a = MathF.Atan2(nowPoint.z - this.transform.position.z, nowPoint.x - this.transform.position.x) - φ / 180f * MathF.PI;
+        // //Debug.Log(MathF.Atan2(nowPoint.z-this.transform.position.z,nowPoint.x-this.transform.position.x)*180/MathF.PI);
+        var a=Math.PI/180*Vector3.SignedAngle(new Vector3(dir.transform.position.x,this.transform.position.y,dir.transform.position.z)-this.transform.position,new Vector3(nowPoint.x - this.transform.position.x,0,nowPoint.z - this.transform.position.z),Vector3.up);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             auto = !auto;
@@ -76,7 +77,7 @@ public class Controller : MonoBehaviour
             }
             Debug.Log(nowPoint);
             Vy = 1;
-            ω = 2f * Vy * -MathF.Sin(a) / _distance;
+            ω = 2f * Vy * MathF.Sin((float)a) / _distance;
             //Debug.Log(ω);
         }
         else
